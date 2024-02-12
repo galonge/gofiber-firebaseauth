@@ -7,6 +7,7 @@ package gofiberfirebaseauth
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -58,9 +59,21 @@ func New(config Config) fiber.Handler {
 		// 5) IF IdToken valid return SucessHandler
 		if token != nil {
 
+			// validate email exist before type casting it as string
+			email := ""
+			phone := ""
+			if _, ok := token.Claims["email"].(string); ok {
+				fmt.Println("[INFO]: Email claim is present.")
+				email = token.Claims["email"].(string)
+			} else {
+				fmt.Println("[INFO]: Email claim is missing or not a string. Proceeding with phone number authentication")
+				phone = token.Claims["phone_number"].(string)
+			}
+
 			// Set authenticated user data into local context
 			c.Locals(cfg.ContextKey, User{
-				Email:         token.Claims["email"].(string),
+				Email:         email,
+				Phone:         phone,
 				EmailVerified: token.Claims["email_verified"].(bool),
 				UserID:        token.Claims["user_id"].(string),
 			})
