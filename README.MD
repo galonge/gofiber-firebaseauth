@@ -15,7 +15,7 @@ gofiber-firebaseauth is inspired by npm package [express-firebase-auth](https://
 In your gofiber app
 ```sh
 $ go get -u github.com/gofiber/fiber/v2
-$ go get github.com/sacsand/gofiber-firebaseauth
+$ go get github.com/galonge/gofiber-firebaseauth
 ```
 
 # Configure 
@@ -24,7 +24,7 @@ In your app import the middleware
 ```go
 import (
   "github.com/gofiber/fiber/v2"
-  "github.com/sacsand/gofiber-firebaseauth"
+  "github.com/galonge/gofiber-firebaseauth"
 )
 ```
 Provide a minimal config
