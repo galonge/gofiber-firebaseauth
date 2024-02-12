@@ -1,4 +1,8 @@
 # Go Fiber Firebase Auth Middleware 
+
+This is a fork of sacsand/gofiber-firebaseauth. 
+This adds the ability to use phone number login for firebase. 
+
 [![CircleCI](https://circleci.com/gh/sacsand/gofiber-firebaseauth.svg?style=shield)](https://circleci.com/gh/sacsand/gofiber-firebaseauth)
 
 Authenticate your endpoints with [Firebase Authentication ](https://github.com/LeafyCode/express-firebase-auth/).
