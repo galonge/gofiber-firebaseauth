@@ -61,10 +61,12 @@ func New(config Config) fiber.Handler {
 
 			// validate email exist before type casting it as string
 			email := ""
+			email_verified := false
 			phone := ""
 			if _, ok := token.Claims["email"].(string); ok {
 				fmt.Println("[INFO]: Email claim is present.")
 				email = token.Claims["email"].(string)
+				email_verified = token.Claims["email_verified"].(bool)
 			} else {
 				fmt.Println("[INFO]: Email claim is missing or not a string. Proceeding with phone number authentication")
 				phone = token.Claims["phone_number"].(string)
@@ -74,7 +76,7 @@ func New(config Config) fiber.Handler {
 			c.Locals(cfg.ContextKey, User{
 				Email:         email,
 				Phone:         phone,
-				EmailVerified: token.Claims["email_verified"].(bool),
+				EmailVerified: email_verified,
 				UserID:        token.Claims["user_id"].(string),
 			})
 
